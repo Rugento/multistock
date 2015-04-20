@@ -32,7 +32,7 @@ class Rugento_Multistock_Model_Observer
      */
     public function multiStock($event)
     {
-        $restUid    = $event->getEvent()->getData('rest_uid');
+        $restUid    = Mage::app()->getRequest()->getQuery('stock_id', $event->getEvent()->getData('rest_uid'));
         $sourceData = $event->getEvent()->getData('source_data');
         $status     = $event->getEvent()->getData('status');
 
