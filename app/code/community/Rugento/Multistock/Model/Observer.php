@@ -23,7 +23,7 @@ class Rugento_Multistock_Model_Observer
          * Сейчас статус переиндексируется только для основного склада
          * для остальных статус наличия по сайтам не переиндексируется
          */
-        $select->where('ciss.stock_id = ?', Mage_CatalogInventory_Model_Stock::DEFAULT_STOCK_ID);
+//        $select->where('ciss.stock_id = ?', Mage_CatalogInventory_Model_Stock::DEFAULT_STOCK_ID);
         return $this;
     }
 
@@ -32,7 +32,7 @@ class Rugento_Multistock_Model_Observer
      */
     public function multiStock($event)
     {
-        $restUid    = Mage::app()->getRequest()->getQuery('stock_id', $event->getEvent()->getData('rest_uid'));
+        $restUid    = Mage::app()->getRequest()->getParam('stock_id', $event->getEvent()->getData('rest_uid'));
         $sourceData = $event->getEvent()->getData('source_data');
         $status     = $event->getEvent()->getData('status');
 

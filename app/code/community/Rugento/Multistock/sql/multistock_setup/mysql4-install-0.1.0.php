@@ -75,6 +75,13 @@ if (! $installer->getConnection()->isTableExists($installer->getTable('multistoc
 //        ->addForeignKey($installer->getFkName('multistock/multistock', 'website_id', 'core/website', 'website_id'), 'website_id', $installer->getTable('core/website'), 'website_id', Varien_Db_Ddl_Table::ACTION_CASCADE, Varien_Db_Ddl_Table::ACTION_CASCADE);
         ;
     $installer->getConnection()->createTable($table);
+
+    $installer->getConnection()->insert($installer->getTable('multistock/multistock'), [
+        'stock_id'               => '1',
+        'uid'                    => '0000',
+        'website_id'             => '0'
+    ]);
 }
+
 
 $installer->endSetup();

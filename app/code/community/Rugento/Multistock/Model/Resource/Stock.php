@@ -76,7 +76,7 @@ class Rugento_Multistock_Model_Resource_Stock extends Mage_CatalogInventory_Mode
         $select = parent::_getLoadSelect($field, $value, $object);
         $select->joinLeft(array(
             't_att' => $this->getTable('multistock/multistock')
-        ), 't_att.stock_id=cataloginventory_stock.stock_id');
+        ), 't_att.stock_id='.$this->getTable('cataloginventory/stock').'.stock_id');
         return $select;
     }
 }
