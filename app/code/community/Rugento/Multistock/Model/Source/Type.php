@@ -24,6 +24,10 @@ class Rugento_Multistock_Model_Source_Type
             array(
                 'value' => '2',
                 'label' => 'Для информации'
+            ),
+            array(
+                'value' => '3',
+                'label' => 'Сумма остатков всех складов'
             )
         );
     }

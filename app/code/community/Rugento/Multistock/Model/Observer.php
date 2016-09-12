@@ -35,6 +35,7 @@ class Rugento_Multistock_Model_Observer
         $restUid    = Mage::app()->getRequest()->getParam('stock_id', $event->getEvent()->getData('rest_uid'));
         $sourceData = $event->getEvent()->getData('source_data');
         $status     = $event->getEvent()->getData('status');
+        $item       = $event->getEvent()->getItem();
 
         if(Mage::getStoreConfig('cml2/stock/multi') && $restUid !== null) {
             if($this->_rests === null) {
@@ -43,6 +44,11 @@ class Rugento_Multistock_Model_Observer
             $stock = $this->_rests->getItemByColumnValue('uid', $restUid);
             if($stock) {
                 $sourceData->setData('stock_id', $stock->getData('stock_id'));
+
+                if($stock->getStockType() == '3' && is_numeric($item->getSummary())) {
+                    $sourceData->setData('qty', $item->getSummary());
+                }
+
             } else {
                 $status->save = false; //off save stock data
             }
